@@ -1,0 +1,6 @@
+id: alien4cloud-clouni-plugin
+name: Orchestration plugin for Alien4Cloud
+version: ${project.version}
+description: >
+  Plugin that uses Clouni (Cloud Unifier Tool for Service Orchestration)
+configuration_class: alien4cloud.plugin.clouni.PluginConfiguration
