@@ -23,7 +23,7 @@ Current project settings are
  version: ${project.version}
  description: >
    Plugin that uses Clouni (Cloud Unifier Tool for Service Orchestration)
- configuration_class: alien4cloud.plugin.clouni.PluginConfiguration
+ configuration_class: alien4cloud.plugin.clouni.config.PluginConfiguration
 ~~~
 
 Configuration class look like

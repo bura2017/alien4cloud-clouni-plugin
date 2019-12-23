@@ -1,4 +1,4 @@
-package alien4cloud.plugin.clouni;
+package alien4cloud.plugin.clouni.orchestrator;
 
 import alien4cloud.orchestrators.plugin.ILocationConfiguratorPlugin;
 import alien4cloud.orchestrators.plugin.IOrchestratorPlugin;
@@ -11,17 +11,15 @@ import alien4cloud.paas.model.*;
 import alien4cloud.plugin.clouni.config.ClouniConfig;
 import alien4cloud.plugin.clouni.location.ClouniLocationConfiguratorFactory;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-@Component
-@RequiredArgsConstructor()
 public class ClouniOrchestrator implements IOrchestratorPlugin<ClouniConfig> {
+
+    public ClouniOrchestrator(){ }
 
     private @NonNull
     ClouniLocationConfiguratorFactory clouniLocationConfiguratorFactory;

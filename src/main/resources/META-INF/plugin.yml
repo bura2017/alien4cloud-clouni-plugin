@@ -3,7 +3,7 @@ name: Orchestration plugin for Alien4Cloud
 version: ${project.version}
 description: >
   Plugin that uses Clouni (Cloud Unifier Tool for Service Orchestration)
-configuration_class: alien4cloud.plugin.clouni.PluginConfiguration
+configuration_class: alien4cloud.plugin.clouni.config.PluginConfiguration
 component_descriptors:
   - bean_name: clouni-orchestrator-factory
     name: Clouni Orchestrator Factory
