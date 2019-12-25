@@ -13,20 +13,24 @@ Plugin must be eventually packaged as zip-file which includes:
     * version
     * description
     * configuration_class (JAVA class to be loaded as Spring context configuration)
-    * component_descriptors contains names of components specified in annotations _@Component("<name>")_
+    * component_descriptors contains names of components specified in annotations _@Component("<name>")_, 
+    also required to init plugin as orchestrator
 
 Current project settings are
 
 ~~~
- id: alien4cloud-clouni-plugin
- name: Orchestration plugin for Alien4Cloud
- version: ${project.version}
- description: >
-   Plugin that uses Clouni (Cloud Unifier Tool for Service Orchestration)
- configuration_class: alien4cloud.plugin.clouni.config.PluginConfiguration
+id: alien4cloud-clouni-plugin
+name: Orchestration plugin for Alien4Cloud
+version: ${project.version}
+description: >
+  Plugin that uses Clouni (Cloud Unifier Tool for Service Orchestration)
+configuration_class: alien4cloud.plugin.clouni.config.PluginConfiguration
+component_descriptors:
+  - bean_name: clouni-orchestrator-factory
+    name: Clouni Orchestrator Factory
 ~~~
 
-Configuration class look like
+Configuration class look like in marathon plugin
 
 ~~~
 @Configuration
@@ -36,6 +40,25 @@ public class PluginConfiguration {
 ~~~
 
 ComponentScan annotation configures packages to search for Spring annotations.
+
+Also Configuration class may be represented another way 
+
+~~~
+@Configuration
+public class PluginConfiguration {
+    public PluginConfiguration() {
+    }
+    @Bean(
+            name = {"clouni-orchestrator-factory"}
+    )
+    public ClouniOrchestratorFactory clouniOrchestratorFactory() {
+        return new ClouniOrchestratorFactory();
+    }
+}
+~~~
+
+If loading plugin failed with error "Autowire can't be cast to Autowire", probably error conflicting libraries
+which were already loaded in alien4cloud and which you have in _lib_ directory (ex. alien4cloud-core should not be present in _lib_)
 
 ## SpringFramework
 
@@ -75,6 +98,9 @@ The class which defines the orchestrator _implements alien4cloud.orchestrators.p
 The factory class which manages orchestrator lifecycle _implements IOrchestratorPluginFactory<T, V>_.
 
 Both classes must be annotated as _Component_ classes. 
+
+If ApplicationContext in IOrchestratorPluginFactory used to add new orchestrator in SpringContext is NULL 
+than it should beannotated as _@Autowired_.  
 
 ## Config 
 Location config contains the following parameters

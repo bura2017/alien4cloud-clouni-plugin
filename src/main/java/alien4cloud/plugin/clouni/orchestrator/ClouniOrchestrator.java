@@ -11,12 +11,14 @@ import alien4cloud.paas.model.*;
 import alien4cloud.plugin.clouni.config.ClouniConfig;
 import alien4cloud.plugin.clouni.location.ClouniLocationConfiguratorFactory;
 import lombok.NonNull;
+import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class ClouniOrchestrator implements IOrchestratorPlugin<ClouniConfig> {
 
     public ClouniOrchestrator(){ }
